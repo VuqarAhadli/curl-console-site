@@ -82,6 +82,38 @@ const HTML = `<!DOCTYPE html>
 <html>
 <head>
   <title>Hey there!</title>
+
+  <style>
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      text-align: center;
+    }
+
+    #pyramid {
+      white-space: pre;
+      font-family: monospace;
+      font-size: 16px;
+      line-height: 16px;
+      margin-top: 20px;
+      color: #000000;
+    }
+
+    #mult {
+      white-space: pre;
+      font-family: monospace;
+      font-size: 16px;
+      line-height: 16px;
+      margin-top: 20px;
+      color: #ffffff;
+      background-color: rgb(0, 0, 0);
+      
+    }
+    #pad {
+      margin-left: 10%;
+      margin-right: 10%;
+    }
+  </style>
+
   <script>
     const styles = {
       title: 'font-size:24px; font-weight:bold; color:#a855f7;',
@@ -94,31 +126,71 @@ const HTML = `<!DOCTYPE html>
       Green: 'color:#90fcd1; font-size:13px;',
     };
 
-    console.log('%c██████████████████████████████████████', styles.Blue);
-    console.log('%c██████████████████████████████████████', styles.Grey);
-    console.log('%c██████████████████████████████████████', styles.Green);
-        
-    console.log('%cYou seem curious, stranger...',  styles.Regular);
-    
-    console.log('%c██████████████████████████████████████', styles.Blue);
-    console.log('%c██████████████████████████████████████', styles.Grey);
-    console.log('%c██████████████████████████████████████', styles.Green);
+    function pyramid(n) {
+      const width = 2 * n - 1;
+      let output = "";
 
-    console.log('%cIn case you want to contact me:', styles.Regular);
-    console.log('%c GITHUB %c github.com/yourname', styles.label, styles.value);
-    console.log('%c EMAIL  %c vuqarahadli17@gmail.com',  styles.label, styles.value);
+      for (let i = 1; i <= n; i++) {
+        let stars = (i-1).toString().repeat(2 * i - 1);
+        let spaces = " ".repeat((width - (2 * i - 1)) / 2);
+        output += spaces + stars + spaces + "\n";
+      }
 
-    
-    console.log('%c If you are reading this, you might be an interesting individual...', styles.subtitle);
+
+
+      document.getElementById("pyramid").textContent = output;
+    }
+
+    function mult() {
+      let output = ""
+
+      for (let i = 1 ; i <= 10 ; i++){
+        for (let j = 1 ; j <= 5 ; j++){
+          let iPadding = i == 10 ? "" :  " ";
+          let jPadding = j == 10 ? "" :  " ";
+          output += " " + i.toString() + iPadding + " * " + jPadding + j.toString() + " = " + (i*j).toString() + "\t";
+        }
+        output += "\n"
+      }
+      output += "\n";
+      for (let i = 1 ; i <= 10 ; i++){
+        for (let j = 6 ; j <= 10 ; j++){
+          let iPadding = i == 10 ? "" :  " ";
+          let jPadding = j == 10 ? "" :  " ";
+          output += " " + i.toString() + iPadding + " * " + jPadding + j.toString() + " = " + (i*j).toString() + "\t";
+        }
+        output += "\n"
+      }
+
+      document.getElementById("mult").textContent = output;
+    }
+
+    window.onload = function () {
+      pyramid(10);
+      mult();
+    };
   </script>
 </head>
+
 <body>
+
   <h1>Hello!</h1>
-  <h2>Do not expect much from me.</h2>
+
+  <h2>why would you even use a browser when you have curl</h2>
+
   <a href="https://github.com/VuqarAhadli">Github</a>
   <a href="mailto:vuqarahadli17@gmail.com">Mail me.</a>
+
   <h2>A red panda:</h2>
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkKOa2nZ_ogJtS6jPyKSgZG-Jct43BGeh4w&s" alt="A red panda.">
+
+  <h2>Cool Pyramid</h2>
+  <div id="pyramid"></div>
+
+  <h2>Multiplication Table</h2>
+  <div id = "pad" > <div id="mult"></div> </div>
+  
+
 </body>
 </html>`;
 
