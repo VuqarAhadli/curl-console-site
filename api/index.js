@@ -106,8 +106,8 @@ const HTML = `<!DOCTYPE html>
       margin-top: 20px;
       color: #ffffff;
       background-color: rgb(0, 0, 0);
-      
     }
+
     #pad {
       margin-left: 10%;
       margin-right: 10%;
@@ -133,33 +133,31 @@ const HTML = `<!DOCTYPE html>
       for (let i = 1; i <= n; i++) {
         let stars = (i-1).toString().repeat(2 * i - 1);
         let spaces = " ".repeat((width - (2 * i - 1)) / 2);
-        output += spaces + stars + spaces + "\n";
+        output += spaces + stars + spaces + "\\n";
       }
-
-
 
       document.getElementById("pyramid").textContent = output;
     }
 
     function mult() {
-      let output = ""
+      let output = "";
 
-      for (let i = 1 ; i <= 10 ; i++){
-        for (let j = 1 ; j <= 5 ; j++){
-          let iPadding = i == 10 ? "" :  " ";
-          let jPadding = j == 10 ? "" :  " ";
-          output += " " + i.toString() + iPadding + " * " + jPadding + j.toString() + " = " + (i*j).toString() + "\t";
+      for (let i = 1; i <= 10; i++) {
+        for (let j = 1; j <= 5; j++) {
+          let iPadding = i == 10 ? "" : " ";
+          let jPadding = j == 10 ? "" : " ";
+          output += " " + i.toString() + iPadding + " * " + jPadding + j.toString() + " = " + (i*j).toString() + "\\t";
         }
-        output += "\n"
+        output += "\\n";
       }
-      output += "\n";
-      for (let i = 1 ; i <= 10 ; i++){
-        for (let j = 6 ; j <= 10 ; j++){
-          let iPadding = i == 10 ? "" :  " ";
-          let jPadding = j == 10 ? "" :  " ";
-          output += " " + i.toString() + iPadding + " * " + jPadding + j.toString() + " = " + (i*j).toString() + "\t";
+      output += "\\n";
+      for (let i = 1; i <= 10; i++) {
+        for (let j = 6; j <= 10; j++) {
+          let iPadding = i == 10 ? "" : " ";
+          let jPadding = j == 10 ? "" : " ";
+          output += " " + i.toString() + iPadding + " * " + jPadding + j.toString() + " = " + (i*j).toString() + "\\t";
         }
-        output += "\n"
+        output += "\\n";
       }
 
       document.getElementById("mult").textContent = output;
@@ -169,7 +167,8 @@ const HTML = `<!DOCTYPE html>
       pyramid(10);
       mult();
     };
-  </script>
+  <\/script>
+
 </head>
 
 <body>
@@ -188,8 +187,7 @@ const HTML = `<!DOCTYPE html>
   <div id="pyramid"></div>
 
   <h2>Multiplication Table</h2>
-  <div id = "pad" > <div id="mult"></div> </div>
-  
+  <div id="pad"><div id="mult"></div></div>
 
 </body>
 </html>`;
