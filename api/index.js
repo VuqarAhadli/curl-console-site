@@ -88,16 +88,36 @@ const HTML = `<!DOCTYPE html>
       font-family: Helvetica, Arial, sans-serif;
       text-align: center;
     }
-
+    h1 {
+      transition: transform 3s, letter-spacing 3s, opacity 3s;
+    }
+    h1:hover{
+      transform:scale(5);
+      letter-spacing: 0.3em;
+      opacity: 1;
+    }
+    #panda {
+      transition: transform 6s, letter-spacing 1s, opacity 1s;
+    }
+    #panda:hover {
+      transform: rotate3d(0.5, 0.5, 0.5, 3600deg);
+      letter-spacing: 0.3em;
+      opacity: 0.5;
+    }
     #pyramid {
       white-space: pre;
       font-family: monospace;
       font-size: 16px;
       line-height: 16px;
       margin-top: 20px;
+      transition: transform 1s, letter-spacing 1s, opacity 1s;
       color: #000000;
     }
-
+    #pyramid:hover {
+      transform: perspective(400px) rotateX(20deg);
+      color: #00ff48;
+      background-color: #000000;
+    }
     #mult {
       white-space: pre;
       font-family: monospace;
@@ -106,11 +126,31 @@ const HTML = `<!DOCTYPE html>
       margin-top: 20px;
       color: #ffffff;
       background-color: rgb(0, 0, 0);
+      transition: transform 1s, letter-spacing 1s, opacity 1s;
     }
-
+    #mult:hover {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    #curl {
+      color: #ffffff;
+      background-color: rgb(0, 0, 0);
+      display: inline-block;
+      transition: transform 0.3s ease, letter-spacing 0.3s ease, opacity 0.3s ease;
+      cursor: default;
+    }
+    #curl:hover {
+      transform: rotate(360deg);
+      letter-spacing: 0.3em;
+      opacity: 0;
+    }
     #pad {
       margin-left: 10%;
       margin-right: 10%;
+    }
+    #padp {
+      margin-left: 40%;
+      margin-right: 40%;
     }
   </style>
 
@@ -128,15 +168,18 @@ const HTML = `<!DOCTYPE html>
 
     function pyramid(n) {
       const width = 2 * n - 1;
-      let output = "";
+      let num = 0;
 
-      for (let i = 1; i <= n; i++) {
-        let stars = (i-1).toString().repeat(2 * i - 1);
-        let spaces = " ".repeat((width - (2 * i - 1)) / 2);
-        output += spaces + stars + spaces + "\\n";
-      }
-
-      document.getElementById("pyramid").textContent = output;
+      setInterval(() => {
+        let output = "";
+        for (let i = 1; i <= n; i++) {
+          let stars = num.toString().repeat(2 * i - 1);
+          let spaces = " ".repeat((width - (2 * i - 1)) / 2);
+          output += spaces + stars + spaces + "\\n";
+        }
+        document.getElementById("pyramid").textContent = output;
+        num = (num + 1) % 10;
+      }, 300);
     }
 
     function mult() {
@@ -175,16 +218,16 @@ const HTML = `<!DOCTYPE html>
 
   <h1>Hello!</h1>
 
-  <h2>why would you even use a browser when you have curl</h2>
+  <h2>why would you even use a browser when you have <span id="curl">curl</span></h2>
 
   <a href="https://github.com/VuqarAhadli">Github</a>
   <a href="mailto:vuqarahadli17@gmail.com">Mail me.</a>
 
   <h2>A red panda:</h2>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkKOa2nZ_ogJtS6jPyKSgZG-Jct43BGeh4w&s" alt="A red panda.">
+  <img id="panda" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtkKOa2nZ_ogJtS6jPyKSgZG-Jct43BGeh4w&s" alt="A red panda.">
 
   <h2>Cool Pyramid</h2>
-  <div id="pyramid"></div>
+  <div id="padp"><div id="pyramid"></div></div>
 
   <h2>Multiplication Table</h2>
   <div id="pad"><div id="mult"></div></div>
